@@ -1,0 +1,602 @@
+for rock paper scirrors game first we will use header. So inside header tag we use the <h1 > tag where we need to write 
+<header>
+<h1>Rock &#129704; Paper &#129531;Scirrors &#9986; &#127918;</h1>
+</header>
+
+next we need to use scoreboard where we can show the scores of the game. So there is two badges/players 1) Users 2) computer 
+So here we need to create 3 div tags first is score board , then 2 badge - users and computer.
+Next use span tag for put the scores.Here score will show the users and computers.
+   <div class="score-board">
+      <div id="user-label" class="badge">User</div>
+      <div id="computer-label" class="badge">Computer</div>
+      <span id="user-score">0</span>:<span id="computer-score">0</span>
+    </div>
+
+Next we need to show the messages.Need to create a div & declare the class as well. 
+ <div class="result">
+      <p>Paper covers rock, you win</p>
+    </div>
+
+Next we create the div tag for choices of Rock , Paper, Sciccors . For that we created three div tag with image tag. 
+ <div class="choices">
+      <div class="choice" id="r">
+        <img src="./images/rock.png" alt="" />
+      </div>
+      <div class="choice" id="h">
+        <img src="./images/hand.png" alt="" />
+      </div>
+      <div class="choice" id="s">
+        <img src="./images/sciccors.png" alt="" />
+      </div>
+    </div>
+
+Now we can show that action message. 
+<p id="action-message">Make Your Moves</p>
+
+Next we need to declare the css file.
+
+For universal selector 
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+Next Header
+header {
+  background: whitesmoke;
+  padding: 20px;
+}
+header > h1 {
+  color: #25272e;
+  text-align: center;
+  font-family: 'VT323', monospace;
+}
+
+next body 
+body {
+  background-color: #24272e;
+}
+
+next score-board
+.score-board {
+  margin: 20px auto;
+  border: 3px solid whitesmoke;
+  border-radius: 4px;
+  text-align: center;
+  width: 200px;
+  color: whitesmoke;
+  font-size: 46px;
+  padding: 15px 20px;
+  font-family: 'VT323', monospace;
+ position: relative;
+}
+
+next badge
+
+.badge {
+  background-color: whitesmoke;
+  color: rgb(0, 0, 0);
+  font-weight: 400;
+  font-size: 18px;
+  padding: 10px 10px;
+  font-family: 'VT323', monospace;
+}
+
+next label
+
+#user-label {
+  position: absolute;
+  top: 20px;
+  left: -45px;
+  border-radius: 50%;
+  width: 50px;
+  background: radial-gradient(at center, #3498db, #9b59b6);
+}
+
+#computer-label {
+  position: absolute;
+  top: 20px;
+  right: -45px;
+  border-radius: 50%;
+  width: 50px;
+  background: radial-gradient(at center, #3498db, #9b59b6);
+}
+
+next result
+.result {
+  font-size: 40px;
+  color: whitesmoke;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'VT323', monospace;
+}
+
+Next choices and choice 
+.choices {
+   margin-top: 50px;
+  text-align: center;
+}
+
+.choice {
+  border: 4px solid white;
+  border-radius: 50%;
+  margin: 0 20px;
+  padding: 10px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+.choice:hover {
+  cursor: pointer;
+  background: radial-gradient(at center, #fa117a, #ffffff);
+}
+
+Now we are moving towards javascript.
+
+First to do is cache the DOM.So we need the actual score . I used it because differentiate between normal variables and then DOM Variables. So, HTML variables that store DOM elements.
+
+let userScore = 0
+let computerScore = 0
+const userScore_span = document.getElementById('user-score')
+const computerScore_span = document.getElementById('computer-score')
+const scoreBoard_div = document.querySelector('.score-board')
+const result_p = document.querySelector('.result > p')
+const rock_div = document.getElementById('r')
+const paper_div = document.getElementById('p')
+const scissors_div = document.getElementById('s')
+
+So cached dom complete.
+
+So caching DOM means storing something for future use.
+
+Next we are moving towards event listeners to each button.
+
+// Clicked on rock
+rock_div.addEventListener('click', function () {
+  console.log('Hey you clicked on rock')
+})
+// clicked on paper
+paper_div.addEventListener('click', function () {
+  console.log('Hey you clicked on paper')
+})
+// clicked on scissors
+scissors_div.addEventListener('click', function () {
+  console.log('Hey you clicked on scissors')
+})
+
+Now we will create a function called game.And we will remove the console.log.
+// Clicked on rock
+rock_div.addEventListener('click', function () {
+  game('r')
+})
+// clicked on paper
+paper_div.addEventListener('click', function () {
+  game('p')
+})
+// clicked on scissors
+scissors_div.addEventListener('click', function () {
+  game('c')
+})
+
+Next we create main function and declare game function inside of it.
+function main() {
+  // Clicked on rock
+  rock_div.addEventListener('click', function () {
+    game('r')
+  })
+  // clicked on paper
+  paper_div.addEventListener('click', function () {
+    game('p')
+  })
+  // clicked on scissors
+  scissors_div.addEventListener('click', function () {
+    game('c')
+  })
+}
+
+main();
+
+Next define a function called game.
+function game(userChoice) {
+  console.log(' Hurrey !!! ' + userChoice)
+}
+
+Next we need to define the computer's choice so for that we declare a function getComputerChoice. And also we declare that choices as well r,p,s . Then we need to select in random way so for that we use Math.random function
+function getComputerChoice() {
+  const choices = ['r', 'p', 's']
+  console.log(Math.random())
+}
+getComputerChoice()
+
+So we need to declare the number as a whole number not a integer number so for that we are using Math.floor which return as a whole number with random number.
+function getComputerChoice() {
+  const choices = ['r', 'p', 's']
+  console.log(Math.floor(Math.random() * 3))
+}
+getComputerChoice()
+
+Next we will remove the console.log we will store that in a variable.
+function getComputerChoice() {
+  const choices = ['r', 'p', 's']
+  const randomNumber = Math.floor(Math.random() * 3)
+  return choices[randomNumber]
+}
+console.log(getComputerChoice())
+
+next we will remove the console.log(getComputerChoice()) because the functions are working.So now we can move forward.
+function game(userChoice) {
+  const computerChoice = getComputerChoice();
+  console.log(computerChoice);
+}
+game('Yo')
+
+next we need to declare the computer choice as well as userchoice.
+function game(userChoice) {
+  const computerChoice = getComputerChoice();
+  console.log("user choice =>" + userChoice);
+  console.log("computer choice =>" + computerChoice);
+}
+
+Next is we have to compare with users and the computer. Now if user picks rock and computer pick scissor then it's a win. If the user picks paper and the computer picks scissors, then it's a loss. So we have to do this.
+Here we will use Switch statement instead of if statement.
+
+We will remove  this =>
+  console.log("user choice =>" + userChoice);
+  console.log("computer choice =>" + computerChoice);
+
+Switch statement :-
+function game(userChoice) {
+  const computerChoice = getComputerChoice()
+  switch (userChoice + computerChoice) {
+    case 'rs':
+    case 'pr':
+    case 'sp':
+      console.log('USER WINS.')
+      break
+    case 'rp':
+    case 'ps':
+    case 'sr':
+      console.log('USER LOSES.')
+      break
+    case 'rr':
+    case 'pp':
+    case 'ss':
+      console.log("IT'S A DRAW")
+      break
+  }
+}
+
+But here all we can see in the console.log here we can use different function lose, win, and draw.
+function game(userChoice) {
+  const computerChoice = getComputerChoice()
+  switch (userChoice + computerChoice) {
+    case 'rs':
+    case 'pr':
+    case 'sp':
+      win()
+      break
+    case 'rp':
+    case 'ps':
+    case 'sr':
+      lose()
+      break
+    case 'rr':
+    case 'pp':
+    case 'ss':
+      draw()
+      break
+  }
+}
+
+and also we declare the function function win() {
+  console.log('WIN')
+}
+
+function lose() {
+  console.log('LOSE')
+}
+
+function draw() {
+  console.log('DRAW')
+}
+
+Next we will increase the user score.
+function win() {
+  userScore++
+  console.log('WIN')
+  console.log(userScore)
+}
+
+but we need to show that score on the screen so for that we will remove console.log
+
+function win() {
+  userScore++
+  userScore_span.innerHTML = userScore
+  computerScore_span.innerHTML = computerScore
+}
+
+So once we have the score , and now we need to actually display the message that says paper beats rock .. fot that we cannot do that yet. So for that we don't have any references in our win function. We have that in our game function, but not in our win function. Here we are giving some parameters here that is user, and computer. So, this is defining a function but when you actually run the function, pass in whatever the user choice and computer choices. So we will pass the arguments here, that is user choice and then computer choice.
+
+function win(user, computer) {
+  userScore++
+  userScore_span.innerHTML = userScore
+  computerScore_span.innerHTML = computerScore
+  console.log(user)
+  console.log(computer)
+}
+
+function lose() {}
+
+function draw() {
+  console.log('DRAW')
+}
+
+// User choice
+function game(userChoice) {
+  const computerChoice = getComputerChoice()
+  switch (userChoice + computerChoice) {
+    case 'rs':
+    case 'pr':
+    case 'sp':
+      win(userChoice, computerChoice)
+      break
+    case 'rp':
+    case 'ps':
+    case 'sr':
+      lose(userChoice, computerChoice)
+      break
+    case 'rr':
+    case 'pp':
+    case 'ss':
+      draw(userChoice, computerChoice)
+      break
+  }
+}
+
+So then it will showing the data that is a win function. It only takes care of win function.
+
+Next we don't want to console.log , we want to show it on the page.So we will do is get the result div.
+function win(userChoice, computerChoice) {
+  userScore++
+  userScore_span.innerHTML = userScore
+  computerScore_span.innerHTML = computerScore
+  result_p.innerHTML =
+    userChoice + ' beats ' + computerChoice + ' you win ! 	&#128293;'
+}
+
+Next on the screen we need to show the message . Like Rock beats scissors. So for that we need to create a function name is convertToWord(letter)
+
+function convertToWord(letter) {
+  if (letter === 'r') return 'Rock'
+  if (letter === 'p') return 'Paper'
+  return 'Scissors'
+}
+
+function win(userChoice, computerChoice) {
+  userScore++
+  userScore_span.innerHTML = userScore
+  computerScore_span.innerHTML = computerScore
+  result_p.innerHTML =
+    convertToWord(userChoice) +
+    ' beats ' +
+    convertToWord(computerChoice) +
+    ' you win ! 	&#128293;'
+}
+
+Now we working upon es6. Here we are using backticks and also we are using doller sign to display the same message .
+function win(userChoice, computerChoice) {
+  userScore++
+  userScore_span.innerHTML = userScore
+  computerScore_span.innerHTML = computerScore
+  result_p.innerHTML = `${convertToWord(userChoice)} beats ${convertToWord(
+    computerChoice
+  )}. You win ! &#128293`
+}
+
+Now we need to show that who is throuwing rock and who is throwing the scissors so that we can understand the logic. For  that we are declaring here by smallUserWord and smallCompWord.
+
+function win(userChoice, computerChoice) {
+  userScore++
+  userScore_span.innerHTML = userScore
+  computerScore_span.innerHTML = computerScore
+  const smallUserWord = 'user'.fontsize(3).sub()
+  const smallCompWord = 'comp'.fontsize(3).sub()
+  result_p.innerHTML = `${convertToWord(
+    userChoice
+  )}${smallUserWord} beats ${convertToWord(
+    computerChoice
+  )}${smallCompWord}. You win ! &#128293`
+}
+
+Now we are apply the same code of win to draw and lose.
+
+For lose we want that computer score will go up.
+
+function lose(userChoice, computerChoice) {
+  computerScore++
+  userScore_span.innerHTML = userScore
+  computerScore_span.innerHTML = computerScore
+  const smallUserWord = 'user'.fontsize(3).sub()
+  const smallCompWord = 'comp'.fontsize(3).sub()
+  result_p.innerHTML = `${convertToWord(
+    userChoice
+  )}${smallUserWord} loses to ${convertToWord(
+    computerChoice
+  )}${smallCompWord}. You lost ! &#x1F622`
+}
+
+For draw nobody's score will up because it's a draw game.Like make both of them their score go up.
+function draw(userChoice, computerChoice) {
+  const smallUserWord = 'user'.fontsize(3).sub()
+  const smallCompWord = 'comp'.fontsize(3).sub()
+  result_p.innerHTML = `${convertToWord(
+    userChoice
+  )}${smallUserWord} equals ${convertToWord(
+    computerChoice
+  )}${smallCompWord}. It's a draw! &#8987;`
+}
+
+Now we add extra css here. Like when users win then add green border at the circle and when the users lose then add red border at the circle.and for draw we add gray border at the circle.
+
+.green-glow {
+  border: 4px solid #4dcc7d;
+  box-shadow: 0 0 10px #31b43a;
+}
+
+.red-glow {
+  border: 4px solid #fc121b;
+  box-shadow: 0 0 10px #d01115;
+}
+
+.yellow-glow {
+  border: 4px solid #f3d80d;
+  box-shadow: 0 0 10px #f8fc23;
+}
+
+Next we will working on javascript . When we hit the rock if we win the circle will glow green, lose it will glow red and if it's a draw match the it will glow yellow. 
+
+function win(userChoice, computerChoice) {
+  const smallUserWord = 'user'.fontsize(3).sub()
+  const smallCompWord = 'comp'.fontsize(3).sub()
+  const userChoice_div = document.getElementById(userChoice)
+  userScore++
+  userScore_span.innerHTML = userScore
+  computerScore_span.innerHTML = computerScore
+  result_p.innerHTML = `${convertToWord(
+    userChoice
+  )}${smallUserWord} beats ${convertToWord(
+    computerChoice
+  )}${smallCompWord}. You win ! &#128293`
+  userChoice_div.classList.add('green-glow')
+  setTimeout(() => userChoice_div.classList.remove('green-glow'), 300)
+}
+
+function lose(userChoice, computerChoice) {
+  const smallUserWord = 'user'.fontsize(3).sub()
+  const smallCompWord = 'comp'.fontsize(3).sub()
+  const userChoice_div = document.getElementById(userChoice)
+  computerScore++
+  userScore_span.innerHTML = userScore
+  computerScore_span.innerHTML = computerScore
+  result_p.innerHTML = `${convertToWord(
+    userChoice
+  )}${smallUserWord} loses to ${convertToWord(
+    computerChoice
+  )}${smallCompWord}. You lost ! &#x1F622`
+  userChoice_div.classList.add('red-glow')
+  setTimeout(() => userChoice_div.classList.remove('red-glow'), 300)
+}
+
+function draw(userChoice, computerChoice) {
+  const smallUserWord = 'user'.fontsize(3).sub()
+  const smallCompWord = 'comp'.fontsize(3).sub()
+  const userChoice_div = document.getElementById(userChoice)
+  result_p.innerHTML = `${convertToWord(
+    userChoice
+  )}${smallUserWord} equals ${convertToWord(
+    computerChoice
+  )}${smallCompWord}. It's a draw! &#8987;`
+  userChoice_div.classList.add('yellow-glow')
+  setTimeout(() => userChoice_div.classList.remove('yellow-glow'), 300)
+}
+
+let userScore = 0
+let computerScore = 0
+const userScore_span = document.getElementById('user-score')
+const computerScore_span = document.getElementById('computer-score')
+const scoreBoard_div = document.querySelector('.score-board')
+const result_p = document.querySelector('.result > p')
+const rock_div = document.getElementById('r')
+const paper_div = document.getElementById('p')
+const scissors_div = document.getElementById('s')
+
+// Computer Choice
+function getComputerChoice() {
+  const choices = ['r', 'p', 's']
+  const randomNumber = Math.floor(Math.random() * 3)
+  return choices[randomNumber]
+}
+
+function convertToWord(letter) {
+  if (letter === 'r') return 'Rock'
+  if (letter === 'p') return 'Paper'
+  return 'Scissors'
+}
+
+function win(userChoice, computerChoice) {
+  const smallUserWord = 'user'.fontsize(3).sub()
+  const smallCompWord = 'comp'.fontsize(3).sub()
+  const userChoice_div = document.getElementById(userChoice)
+  userScore++
+  userScore_span.innerHTML = userScore
+  computerScore_span.innerHTML = computerScore
+  result_p.innerHTML = `${convertToWord(
+    userChoice
+  )}${smallUserWord} beats ${convertToWord(
+    computerChoice
+  )}${smallCompWord}. You win ! &#128293`
+  userChoice_div.classList.add('green-glow')
+  setTimeout(() => userChoice_div.classList.remove('green-glow'), 300)
+}
+
+function lose(userChoice, computerChoice) {
+  const smallUserWord = 'user'.fontsize(3).sub()
+  const smallCompWord = 'comp'.fontsize(3).sub()
+  const userChoice_div = document.getElementById(userChoice)
+  computerScore++
+  userScore_span.innerHTML = userScore
+  computerScore_span.innerHTML = computerScore
+  result_p.innerHTML = `${convertToWord(
+    userChoice
+  )}${smallUserWord} loses to ${convertToWord(
+    computerChoice
+  )}${smallCompWord}. You lost ! &#x1F622`
+  userChoice_div.classList.add('red-glow')
+  setTimeout(() => userChoice_div.classList.remove('red-glow'), 300)
+}
+
+function draw(userChoice, computerChoice) {
+  const smallUserWord = 'user'.fontsize(3).sub()
+  const smallCompWord = 'comp'.fontsize(3).sub()
+  const userChoice_div = document.getElementById(userChoice)
+  result_p.innerHTML = `${convertToWord(
+    userChoice
+  )}${smallUserWord} equals ${convertToWord(
+    computerChoice
+  )}${smallCompWord}. It's a draw! &#8987;`
+  userChoice_div.classList.add('yellow-glow')
+  setTimeout(() => userChoice_div.classList.remove('yellow-glow'), 300)
+}
+
+// User choice
+function game(userChoice) {
+  const computerChoice = getComputerChoice()
+  switch (userChoice + computerChoice) {
+    case 'rs':
+    case 'pr':
+    case 'sp':
+      win(userChoice, computerChoice)
+      break
+    case 'rp':
+    case 'ps':
+    case 'sr':
+      lose(userChoice, computerChoice)
+      break
+    case 'rr':
+    case 'pp':
+    case 'ss':
+      draw(userChoice, computerChoice)
+      break
+  }
+}
+
+function main() {
+  // Clicked on rock
+  rock_div.addEventListener('click', () => game('r'))
+  // clicked on paper
+  paper_div.addEventListener('click', () => game('p'))
+  // clicked on scissors
+  scissors_div.addEventListener('click', () => game('s'))
+}
+
+main()

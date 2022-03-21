@@ -1,0 +1,107 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+header {
+  background: whitesmoke;
+  padding: 20px;
+  background-image: url('https://images.pexels.com/photos/4040649/pexels-photo-4040649.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+}
+header > h1 {
+  color: #24272e;
+  text-align: center;
+  font-family: 'VT323', monospace;
+}
+body {
+  background-color: #24272e;
+}
+
+.score-board {
+  margin: 20px auto;
+  border: 8px solid whitesmoke;
+  border-radius: 60%;
+  text-align: center;
+  width: 200px;
+  color: whitesmoke;
+  font-size: 46px;
+  padding: 15px 20px;
+  font-family: 'VT323', monospace;
+  position: relative;
+}
+
+.badge {
+  background-color: whitesmoke;
+  color: rgb(0, 0, 0);
+  font-weight: 400;
+  font-size: 18px;
+  padding: 10px 10px;
+  font-family: 'VT323', monospace;
+}
+
+#user-label {
+  position: absolute;
+  top: 20px;
+  left: -45px;
+  border-radius: 50%;
+  width: 50px;
+  background: radial-gradient(at center, #3498db, #9b59b6);
+}
+
+#computer-label {
+  position: absolute;
+  top: 20px;
+  right: -45px;
+  border-radius: 50%;
+  width: 50px;
+  background: radial-gradient(at center, #3498db, #9b59b6);
+}
+.result {
+  font-size: 40px;
+  color: whitesmoke;
+  text-align: center;
+  font-weight: bold;
+  font-family: 'VT323', monospace;
+}
+
+.choices {
+  margin-top: 50px;
+  text-align: center;
+}
+
+.choice {
+  border: 4px solid white;
+  border-radius: 50%;
+  margin: 0 20px;
+  padding: 10px;
+  display: inline-block;
+  transition: all 0.3s ease;
+}
+.choice:hover {
+  cursor: pointer;
+  background: radial-gradient(at center, #fa117a, #ffffff);
+}
+#action-message {
+  text-align: center;
+  color: whitesmoke;
+  font-family: 'VT323', monospace;
+  font-weight: bold;
+  font-size: 25px;
+  margin-top: 20px;
+}
+
+.green-glow {
+  border: 4px solid #4dcc7d;
+  box-shadow: 0 0 10px #31b43a;
+}
+
+.red-glow {
+  border: 4px solid #fc121b;
+  box-shadow: 0 0 10px #d01115;
+}
+
+.yellow-glow {
+  border: 4px solid #f3d80d;
+  box-shadow: 0 0 10px #f8fc23;
+}
